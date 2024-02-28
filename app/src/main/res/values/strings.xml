@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">My Application</string>
+    <string name="btnclear">C</string>
+    <string name="btnallclear">AC</string>
+    <string name="btnnegpos">-/+</string>
+    <string name="btnmodulo">%</string>
+    <string name="btndivide">/</string>
+    <string name="btnmultiply">*</string>
+    <string name="btnsubtract">-</string>
+    <string name="btnadd">+</string>
+    <string name="btnequal">=</string>
+    <string name="btndot">.</string>
+    <string name="btn0">0</string>
+    <string name="btn1">1</string>
+    <string name="btn2">2</string>
+    <string name="btn3">3</string>
+    <string name="btn4">4</string>
+    <string name="btn5">5</string>
+    <string name="btn6">6</string>
+    <string name="btn7">7</string>
+    <string name="btn8">8</string>
+    <string name="btn9">9</string>
+
+
+</resources>
