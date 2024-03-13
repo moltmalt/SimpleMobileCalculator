@@ -16,6 +16,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     MaterialButton btnclear, btnsigns, btnmodulo, btndivide, btnmultiply, btnsubtract, btnadd, btnequal, btndot, btnallclear;
     MaterialButton btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9, btn0;
 
+    StackEvaluate letseval;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,6 +57,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         MaterialButton btn = (MaterialButton) v;
         String btnText =  btn.getText().toString();
         String dataToCalculate = tvsol.getText().toString();
+        String finalRes = "";
 
         if(btnText.equals("AC")){
             tvsol.setText("");
@@ -63,33 +66,30 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
 
         if(btnText.equals("=")){
-            tvsol.setText(tvres.getText());
+            finalRes = String.valueOf(letseval.bigEvaluate(dataToCalculate));
+            tvsol.setText(finalRes);
+            tvres.setText(finalRes);
             return;
         }
+
 
         if(btnText.equals("C")){
             dataToCalculate = dataToCalculate.substring(0, dataToCalculate.length()-1);
         }else{
+
+            if(btnText.equals("+") || btnText.equals("-") || btnText.equals("*") || btnText.equals("/")){
+                finalRes = String.valueOf(letseval.bigEvaluate(dataToCalculate));
+            }
+
             dataToCalculate = dataToCalculate+btnText;
+
+            tvsol.setText(dataToCalculate);
+            tvres.setText(finalRes);
+            return;
         }
 
-        tvsol.setText(dataToCalculate);
-
-        String finalRes = calculateAns(dataToCalculate);
+        //tvsol.setText(dataToCalculate);
 
         if(!finalRes.equals("Error")) tvres.setText(finalRes);
-    }
-
-    String calculateAns(String data){
-        try{
-            Context context = Context.enter();
-            context.setOptimizationLevel(-1);
-            Scriptable scriptable = context.initStandardObjects();
-            String finalRes = context.evaluateString(scriptable,data,"Javascript",1, null).toString();
-            if(finalRes.endsWith(".0")) finalRes = finalRes.replace(".0", "");
-            return finalRes;
-        }catch(Exception e){
-            return "Error";
-        }
     }
 }
